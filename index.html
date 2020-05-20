@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="BTorrent" lang="en">
+<html ng-app="WebTorrent" lang="en">
 <head>
-  <script>window.sa=window.sa||function(){a=[].slice.call(arguments);sa.q?sa.q.push(a):sa.q=[a]};</script>
   <base href="">
   <meta charset="UTF-8">
-  <title>βTorrent: Browser WebTorrent Client</title>
-  <meta name="description" content="βTorrent is the first fully-featured Browser WebTorrent Client">
-  <meta name="keywords" content="βTorrent, btorrent, client, webtorrent, browser, torrent, stream, bittorrent, torrenting, sharing, filesharing">
-  <meta name="author" content="Desrt.Storm">
+  <title>WebTorrent: Browser Torrent Client</title>
+  <meta name="description" content="WebTorrent Browser Torrent Client">
+  <meta name="keywords" content="client, webtorrent, browser, torrent, stream, bittorrent, torrenting, sharing, filesharing">
+  <meta name="author" content="Abhay">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script
-      src="https://cdn.jsdelivr.net/g/webtorrent@0,momentjs@2,angularjs@1.5(angular.min.js+angular-route.min.js+angular-sanitize.min.js),angular.ui-grid@3.1,angular.ng-notify@0.8,angular.file-upload@12"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/normalize@3.0,skeleton@2.0,angular.ng-notify@0.8(ng-notify.min.css)">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.6/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.ui-grid/3.1/ui-grid.min.css">
+  <script src="https://cdn.jsdelivr.net/combine/npm/webtorrent@0/webtorrent.min.js,npm/moment@2,npm/angular@1.5/angular.min.js,npm/angular-route@1.5/angular-route.min.js,npm/angular-sanitize@1.5/angular-sanitize.min.js,npm/angular-ui-grid@3/ui-grid.min.js,gh/matowens/ng-notify/dist/ng-notify.min.js,npm/ng-file-upload@12.2.13/dist/ng-file-upload.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/g/normalize@3,skeleton@2,angular.ng-notify@0.8(ng-notify.min.css)">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.ui-grid/3/ui-grid.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body ng-controller="BTorrentCtrl" ng-cloak="">
+<body ng-controller="WebTorrentCtrl" ng-cloak="">
 <header>
   <h1>βTorrent<span class="version"> v{{$root.version}}</span></h1>
   <div class="views" ng-show="$root.client.torrents.length == 0"><a ng-href="/#">Full</a> | <a ng-href="/download">Single Download</a> | <a ng-href="/view">Stream / View</a></div>
@@ -26,14 +24,14 @@
 <div id="viewer" ng-style="$root.viewerStyle"></div>
 <div id="view" ng-view></div>
 <footer>
-  <a class="button" href="{{link}}" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br>
-  <b>βTorrent is an FOSS project made with <span style="color: red">♥</span> by <a href="https://torrent.clodui.com" target="_blank" style="text-decoration: none">Desrt.Storm</a></b><br>
-  <b>Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><b><br>
+  <a class="button" href="https://github.com/abhay-ranawat/torrent/issues" target="_blank"><i class="fa fa-github"></i> Suggest a feature / Report a bug <i class="fa fa-comment"></i></a><br>
+  <b><a href="https://github.com/abhay-ranawat/torrent/" target="_blank" style="text-decoration: none">WebTorrent</a> is an FOSS project made with <span style="color: red">♥</span> by <a href="https://github.com/abhay-ranawat" target="_blank" style="text-decoration: none">Abhay</a></b><br>
+  <b> <a href="https://tracker.webtorrent.xyz/stats" target="_blank">WebTorrent's Tracker Stats</a></b><br>
+  Powered by <a href="https://github.com/webtorrent/webtorrent" target="_blank">WebTorrent</a><br>
   </div>
 </footer>
 <div class="spinner" ng-show="client.processing"><i class="fa fa-spinner fa-spin spinner-icon"></i></div>
 <script src="app.js"></script>
-<script async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
-<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+<img src="https://tracker.webtorrent.xyz/imgstats.png" style="display: none">
 </body>
 </html>
