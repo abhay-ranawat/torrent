@@ -7,7 +7,6 @@ header, footer, .center {
 
 th, td {
   padding: 2px 15px;
-  border-radius: 25px;
   max-width: 200px;
   overflow: auto;
   white-space: nowrap; }
@@ -49,7 +48,6 @@ footer {
   height: 40%;
   z-index: 1000;
   background-color: grey;
-  border-radius: 25px;
   opacity: .8;
   text-align: center; }
 
@@ -66,7 +64,6 @@ input[type="submit"].button-danger,
 input[type="reset"].button-danger,
 input[type="button"].button-danger {
   color: #FFF;
-  border-radius: 25px;
   background-color: #D9534F;
   border-color: #D9534F; }
 
@@ -81,7 +78,6 @@ input[type="submit"].button-danger:focus,
 input[type="reset"].button-danger:focus,
 input[type="button"].button-danger:focus {
   color: #FFF;
-  border-radius: 25px;
   background-color: #C43E3A;
   border-color: #C43E3A; }
 
